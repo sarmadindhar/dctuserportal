@@ -2,7 +2,8 @@ import { GET_CMS_CONTENT_SUCCESS } from '../types';
 
 const INITIAL_STATE = {
   cms:{
-    license_types: [],
+    license_types: [
+    ],
     faq:{},
     guideline:{},
     home:{}
