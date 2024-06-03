@@ -1,0 +1,7 @@
+export const LOADING = 'LOADING';
+export const UPLOAD_FILE = 'UPLOAD_FILE';
+export const UPLOAD_FILE_SUCCESS = 'UPLOAD_FILE_SUCCESS';
+export const CLEAR_FILE = 'CLEAR_FILE';
+export const SET_LOCALE = 'SET_LOCALE';
+export const GET_CMS_CONTENT = 'GET_CMS_CONTENT';
+export const GET_CMS_CONTENT_SUCCESS = 'GET_CMS_CONTENT_SUCCESS';
