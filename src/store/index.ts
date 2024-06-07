@@ -14,6 +14,7 @@ import {
   authReducer,
   userReducer,
   appReducer,
+  appDataReducer,
   businessReducer,
   holidayReducer,
   licenseReducer,
@@ -31,6 +32,7 @@ import { fineReducer } from './reducers/fine.reducer';
 
 const reducers = combineReducers({
   app: appReducer,
+  appData: appDataReducer,
   auth: authReducer,
   user: userReducer,
   business: businessReducer,

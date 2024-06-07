@@ -13,3 +13,4 @@ export * from './template.service';
 export * from './workflow.service';
 export * from './fine.service';
 export * from './site.service';
+export * from './appData.service';

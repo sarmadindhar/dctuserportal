@@ -14,3 +14,4 @@ export * from './workflow.saga';
 export * from './licenseAction.saga';
 export * from './licenseDocument.saga';
 export * from './site.saga';
+export * from './appData.saga';

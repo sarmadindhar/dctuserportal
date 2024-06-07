@@ -29,7 +29,7 @@ export function* loginSaga({ payload }: any): any {
     } else {
       const data = { ...response.data.user, ...response.data.tokens };
       sessionStorage.setItem('token', data.access.token);
-      yield put(setUser(response.data.user));
+      yield put(setUser(data));
       yield put(setLoading(false));
 
       payload.navigate('/user/dashboard');
@@ -100,6 +100,7 @@ export function* logoutSaga({ payload }: any): any {
       yield call(toast.error, response.message);
     } else {
       sessionStorage.removeItem('token');
+      yield put(setUser(null));
       if (payload.callback) {
         yield call(payload.callback, null);
       }

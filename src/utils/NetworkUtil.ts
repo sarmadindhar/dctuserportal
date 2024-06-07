@@ -13,7 +13,7 @@ const NetworkUtil = (
   let API_ENDPOINT = `${import.meta.env.VITE_API_BASE_URL}${url}`;
 
   if (
-    import.meta.env.VITE_API_BASE_URL.REACT_APP_SPY_NETWORK_MOCK_DATA === '1' &&
+    import.meta.env.VITE_APP_SPY_NETWORK_MOCK_DATA === '1' &&
     mockEndpoint(url)
   ) {
     return new Promise((resolve, reject) => {

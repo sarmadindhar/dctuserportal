@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getByLocale } from '../../../utils/helpers.ts';
+import fallBackImage from '../../../images/assets/license-5.png';
 
 const LicenseTypes = ( {license_types} : any)=>{
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -30,7 +31,10 @@ const LicenseTypes = ( {license_types} : any)=>{
           <section className="flex flex-wrap license-section sm:gap-3 md:gap-x-14">
           {license_types.map((type:any,i:any)=> (
               <div className="md:w-1/5 sm:w-1/2 h-auto my-4 relative license-wrap" key={i}>
-                <img crossOrigin="anonymous | use-credentials" src={`${import.meta.env.VITE_APP_LOCAL_STORAGE_URL}licenseTypes/${type.cms_image}`} width="100%" />
+                <img crossOrigin="anonymous | use-credentials" src={type.cms_image} width="100%"  onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src=fallBackImage;
+                }}/>
                 <div
                   className="licanse-details bg-[#f77860] w-full absolute h-16 bottom-0 left-0 items-center text-center rounded-xl text-xl text-white z-10 p-2">
                   {getByLocale(type ,'name')}

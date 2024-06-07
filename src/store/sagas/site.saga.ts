@@ -4,13 +4,12 @@ import { getCmsContentService } from '../services';
 import { GENERAL_ERROR } from '../../constants';
 import { setLoading, tokenExpired, getCmsContentSuccess } from '../actions';
 export function* getCmsContentSaga({ payload }: any): any {
-  console.log('getCmsContentSaga');
-
   try {
     yield put(setLoading(true));
     const response = yield call(getCmsContentService, null);
     yield put(setLoading(false));
     if (!response) {
+      yield put(setLoading(false));
       console.log('tabahi');
     } else {
       if (!response.status) {
@@ -21,6 +20,7 @@ export function* getCmsContentSaga({ payload }: any): any {
     }
   } catch (error) {
     console.log(error);
+    yield put(setLoading(false));
     yield call(toast.error, GENERAL_ERROR);
   }
 }

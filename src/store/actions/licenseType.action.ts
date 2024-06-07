@@ -5,7 +5,7 @@ import {
   GET_LICENSE_TYPES_SUCCESS,
   GET_LICENSE_TYPE_SUCCESS,
   UPDATE_LICENSE_TYPE,
-  DELETE_LICENSE_TYPE,
+  DELETE_LICENSE_TYPE, GET_LICENSE_TYPES_BY_ACTION_SUCCESS
 } from '../types';
 
 export const getLicenseTypes = (query: any) => {
@@ -56,3 +56,13 @@ export const deleteLicenseType = (id: any) => {
     payload: { id },
   };
 };
+
+
+
+export const getLicenseTypesByActionSuccess = (data: any) => {
+  return {
+    type: GET_LICENSE_TYPES_BY_ACTION_SUCCESS,
+    payload: data,
+  };
+};
+

@@ -18,6 +18,7 @@ const INITIAL_STATE = {
 const authReducer = (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
     case USER_LOGIN_SUCCESS:
+      console.log(action.payload);
       return { ...state, user: action.payload };
     case USER_LOGOUT_SUCCESS:
     case USER_LOGIN_FAILED:

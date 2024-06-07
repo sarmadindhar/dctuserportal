@@ -5,7 +5,7 @@ import {
   addLicenseTypeService,
   getLicenseTypeService,
   updateLicenseTypeService,
-  deleteLicenseTypeService,
+  deleteLicenseTypeService, getLicenseTypesByActionService
 } from '../services';
 import { GENERAL_ERROR } from '../../constants';
 import {
@@ -13,7 +13,7 @@ import {
   getLicenseTypes,
   getLicenseTypeSuccess,
   tokenExpired,
-  setLoading,
+  setLoading, getLicenseTypesByActionSuccess
 } from '../actions';
 
 export function* getLicenseTypesSaga({ payload }: any): any {
@@ -113,6 +113,26 @@ export function* deleteLicenseTypeSaga({ payload }: any): any {
         yield call(toast.error, response.message);
       } else {
         yield put(getLicenseTypes(null));
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    yield call(toast.error, GENERAL_ERROR);
+  }
+}
+
+export function* getLicenseTypesByActionSaga({ payload }: any): any {
+  try {
+    yield put(setLoading(true));
+    const response = yield call(getLicenseTypesByActionService, payload.action);
+    yield put(setLoading(false));
+    if (!response) {
+      yield put(tokenExpired());
+    } else {
+      if (!response.status) {
+        yield call(toast.error, response.message);
+      } else {
+        yield put(getLicenseTypesByActionSuccess(response.data));
       }
     }
   } catch (error) {

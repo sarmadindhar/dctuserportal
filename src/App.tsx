@@ -23,6 +23,8 @@ import ResetPassword from './pages/Authentication/ResetPassword.tsx';
 import OtpVerification from './pages/Authentication/OtpVerification.tsx';
 import { useSelector } from 'react-redux';
 import Dashboard from './pages/Dashboard';
+import LicenseDetails from './pages/LicenseRequest/NewLicenseRequest/LicenseDetails.tsx';
+import SelectLicenseType from './pages/LicenseRequest/NewLicenseRequest/SelectLicenseType.tsx';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -37,7 +39,7 @@ function App() {
   }, []);
 
   const isAuthenticated = ()=>{
-    return auth && auth.id
+    return auth &&  auth.id
   }
   useEffect(() => {
     // Set direction based on the current language
@@ -89,6 +91,39 @@ function App() {
                     <>
                       <PageTitle title="SLS | Dashboard" />
                       <Dashboard /></>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+        <Route
+          path="/user/licenseApply"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <SelectLicenseType /></>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+        <Route
+          path="/user/licenseApply/:workflowId/details/:id?"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <LicenseDetails /></>
                 ) : (
                   <Navigate replace to='/login' />
                 )

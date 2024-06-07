@@ -13,3 +13,4 @@ export * from './workflow.reducer';
 export * from './licenseAction.reducer';
 export * from './licenseDocument.reducer';
 export * from './site.reducer';
+export * from './appData.reducer';

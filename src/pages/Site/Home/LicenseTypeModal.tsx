@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import {  Modal } from 'antd';
 import { currencyFormat, getByLocale } from '../../../utils/helpers';
 import { useTranslation } from 'react-i18next';
+import fallBackImage from '../../../images/assets/license-5.png';
 
 const LicenseTypeModal = ({visible, onOk , onCancel, licenseDetails}:any)=>{
   const { t } = useTranslation();
@@ -10,7 +11,10 @@ const LicenseTypeModal = ({visible, onOk , onCancel, licenseDetails}:any)=>{
     <Modal title="" open={visible} onOk={onOk} onCancel={onCancel} width={850} footer={null} centered>
       <div className="flex">
         <img crossOrigin="anonymous | use-credentials"
-             src={`${import.meta.env.VITE_APP_LOCAL_STORAGE_URL}licenseTypes/${licenseDetails.cms_image}`} width="378" height="451"   className="rounded-lg" />
+             src={licenseDetails.cms_image} width="378" height="451"   className="rounded-lg"  onError={({ currentTarget }) => {
+          currentTarget.onerror = null; // prevents looping
+          currentTarget.src=fallBackImage;
+        }}/>
 
         <div className="modal-licence-details pl-10 items-start flex flex-col justify-center max-w-md">
           <h2

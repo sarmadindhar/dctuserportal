@@ -89,6 +89,7 @@ import {
   CREATE_REQUEST, USER_REGISTER,
 
   GET_CMS_CONTENT,
+  GET_REGIONS,
   VERIFY_OTP,
   RESEND_OTP, SET_LOCALE
 
@@ -172,7 +173,8 @@ import {
   getCmsContentSaga,
   resendOtpSaga,
 
-  setLocaleSaga
+  setLocaleSaga,
+  getRegionsSaga
 } from './sagas';
 import {
   addFineSaga,
@@ -201,6 +203,7 @@ export default function* watcherSaga() {
   yield takeLatest(GET_CMS_CONTENT, getCmsContentSaga);
 
   yield takeLatest(SET_LOCALE, setLocaleSaga);
+  yield takeLatest(GET_REGIONS, getRegionsSaga);
 
   yield takeLatest(FORGOT_PASSWORD, forgotPasswordSaga);
   yield takeLatest(RESET_PASSWORD, resetPasswordSaga);
