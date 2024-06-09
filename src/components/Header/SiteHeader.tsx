@@ -50,7 +50,7 @@ const SiteHeader = (): any => {
               <a href="#" className="text-sm font-semibold leading-6 text-gray-900">{t('header.guidelines')}</a>
             </NavLink>
             <a href="#" className="text-sm font-semibold leading-6 text-gray-900">{t('header.contact')}</a>
-            <div className="hidden lg:flex lg:flex-1 lg:justify-end  border-l border-black items-center pl-5">
+            <div className="hidden lg:flex lg:flex-1 lg:justify-end  ltr:border-l rtl:border-r border-black items-center ltr:pl-5 rtl:pr-5">
               <NavLink to="/login">
                 <a href="#" className="text-sm font-semibold leading-6 text-gray-900 mr-3 pl-3">{t('common.login')} </a>
               </NavLink>

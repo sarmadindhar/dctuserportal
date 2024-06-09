@@ -295,3 +295,19 @@ nav ul li a.profile:hover svg path{ fill: white;}
 .ant-btn-primary{
   background-color: rgb(247, 120, 96) !important;
 }
+.contact-form label{
+  text-transform: capitalize;
+}
+
+[dir="rtl"] .contact-form input,
+
+[dir="rtl"] .contact-form select,
+[dir="rtl"] .contact-form textarea{
+  direction: ltr;
+}
+[dir="rtl"] .contact-form label{
+ 
+  direction: ltr;
+  
+}
+

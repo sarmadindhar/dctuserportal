@@ -35,7 +35,7 @@ const Register = ({ dispatch , isLoading}: any): any => {
           <div className="isolate bg-white  w-12/12">
 
 
-            <div className="mx-auto text-left">
+            <div className="mx-auto ltr:text-left rtl:text-right">
               <NavLink to="/">
                 <span className="back-arrow"></span>
               </NavLink>
@@ -51,7 +51,7 @@ const Register = ({ dispatch , isLoading}: any): any => {
                 dangerouslySetInnerHTML={{ __html: t('register.message') }}></span></p>
             </div>
 
-            <div className="grid grid-cols-1">
+            <div className="grid grid-cols-1 contact-form">
               <Form
                 name="register"
                 initialValues={{ remember: true }}

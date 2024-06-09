@@ -26,7 +26,7 @@ const SignIn = ({ dispatch, isLoading }: any): any => {
         className="flex max-h-screen bg-white max-w-screen-xl mx-auto items-center justify-between lg:flex-row md:flex-col sm:p-3  max-sm:flex-col max-sm:p-4">
         <div className="form-welcome  sm:w-full md:w-10/12 max-w-md">
           <div className="isolate bg-white  w-12/12">
-            <div className="mx-auto text-left">
+            <div className="mx-auto ltr:text-left rtl:text-right">
               <NavLink to="/">
                 <span  className="back-arrow"></span>
               </NavLink>
@@ -42,7 +42,7 @@ const SignIn = ({ dispatch, isLoading }: any): any => {
               <p className="mt-2 text-lg leading-8 text-gray-600 leading-normal"><span
                 dangerouslySetInnerHTML={{ __html: t('login.message') }}></span></p>
             </div>
-            <div className="grid grid-cols-1">
+            <div className="grid grid-cols-1 contact-form mt-4">
             <Form
                 name="register"
                 initialValues={{ remember: true }}

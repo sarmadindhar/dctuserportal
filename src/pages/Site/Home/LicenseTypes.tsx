@@ -30,7 +30,7 @@ const LicenseTypes = ( {license_types} : any)=>{
             dangerouslySetInnerHTML={{ __html: t('home.license_types') }}></span></h2>
           <section className="flex flex-wrap license-section sm:gap-3 md:gap-x-14">
           {license_types.map((type:any,i:any)=> (
-              <div className="md:w-1/5 sm:w-1/2 h-auto my-4 relative license-wrap" key={i}>
+              <div className="md:w-1/5 sm:w-1/2 h-auto my-4 relative license-wrap rounded-xl overflow-hidden" key={i}>
                 <img crossOrigin="anonymous | use-credentials" src={type.cms_image} width="100%"  onError={({ currentTarget }) => {
                   currentTarget.onerror = null; // prevents looping
                   currentTarget.src=fallBackImage;
