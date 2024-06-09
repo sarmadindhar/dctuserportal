@@ -44,10 +44,10 @@ const Register = ({ dispatch , isLoading}: any): any => {
                   <img className="" src={logo} alt="" width="175" height="60" />
                 </a>
               </div>
-              <h2 className="text-4xl font-bold tracking-tight text-gray-900 ">
+              <h2 className="text-4xl font-bold tracking-tight text-[#2D1015] ">
                 <span dangerouslySetInnerHTML={{ __html: t('register.heading') }}></span>
                 👋</h2>
-              <p className="mt-2 text-lg leading-8 text-gray-600 leading-normal"><span
+              <p className="mt-2 text-lg leading-8 text-[#2D1015] leading-normal"><span
                 dangerouslySetInnerHTML={{ __html: t('register.message') }}></span></p>
             </div>
 

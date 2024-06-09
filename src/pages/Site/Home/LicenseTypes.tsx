@@ -26,7 +26,7 @@ const LicenseTypes = ( {license_types} : any)=>{
     <>
       <div className="bg-[#F9F8F6]">
         <div className="max-w-screen-xl mx-auto pt-28 pb-28">
-          <h2 className="text-5xl font-bold tracking-tight text-gray-900"><span
+          <h2 className="text-5xl font-bold tracking-tight text-[#2D1015]"><span
             dangerouslySetInnerHTML={{ __html: t('home.license_types') }}></span></h2>
           <section className="flex flex-wrap license-section sm:gap-3 md:gap-x-14">
           {license_types.map((type:any,i:any)=> (

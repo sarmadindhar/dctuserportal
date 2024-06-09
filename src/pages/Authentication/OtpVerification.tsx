@@ -68,7 +68,7 @@ const OtpVerification = ({ dispatch }: any): any => {
               <img className="" src={logo} alt="" width="175" height="60" />
             </a>
           </div>
-          <h2 className="text-4xl font-bold tracking-tight text-gray-900 ">OTP <span
+          <h2 className="text-4xl font-bold tracking-tight text-[#2D1015]">OTP <span
             className="text-[#F77860]">Verification</span></h2>
           <p className="mt-2 text-cl leading-8 text-gray-400 leading-normal">Enter the code sent <span
             className="text-black">{searchParams.get('email')}</span></p>

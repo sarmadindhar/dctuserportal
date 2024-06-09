@@ -12,7 +12,7 @@ const Guideline = () => {
     <SiteLayout>
       <div className="bg-white mt-10">
         <div className="max-w-screen-xl mx-auto pb-20">
-          <h2 className="text-5xl font-bold tracking-tight text-gray-900">  <span
+          <h2 className="text-5xl font-bold tracking-tight text-[#2D1015]">  <span
             dangerouslySetInnerHTML={{ __html: t('guideline.heading') }}></span></h2>
           <div className="flex w-full justify-between gap-8">
             <div

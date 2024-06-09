@@ -37,7 +37,7 @@ const SiteContactForm = ({ dispatch, isLoading }: any): any => {
 
 
           <div className="mx-auto max-w-xl ltr:text-left">
-            <h2 className="text-5xl font-bold tracking-tight text-gray-900 ">  <span
+            <h2 className="text-5xl font-bold tracking-tight text-[#2D1015] ">  <span
               dangerouslySetInnerHTML={{ __html: t('contactForm.heading') }}></span></h2>
             <p className="mt-2 text-lg leading-8 text-gray-600">{t('contactForm.message')}</p>
           </div>
