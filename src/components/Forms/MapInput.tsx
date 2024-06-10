@@ -104,7 +104,7 @@ const MapInput = ({form}) =>{
 
 
   return(
-    <LoadScript googleMapsApiKey="" libraries={libraries}>
+    <LoadScript googleMapsApiKey="AIzaSyBiK4-gaLpyLL2Zk42ubfL1VjMbXDPpi6w" libraries={libraries}>
       <Form.Item
         name="map"
         label="Map"
