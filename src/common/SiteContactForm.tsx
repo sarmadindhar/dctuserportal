@@ -36,8 +36,8 @@ const SiteContactForm = ({ dispatch, isLoading }: any): any => {
         <div className="isolate bg-white md:max-w-xl sm:w-full">
 
 
-          <div className="mx-auto max-w-xl text-left">
-            <h2 className="text-5xl font-bold tracking-tight text-gray-900 ">  <span
+          <div className="mx-auto max-w-xl ltr:text-left">
+            <h2 className="text-5xl font-bold tracking-tight text-[#2D1015] ">  <span
               dangerouslySetInnerHTML={{ __html: t('contactForm.heading') }}></span></h2>
             <p className="mt-2 text-lg leading-8 text-gray-600">{t('contactForm.message')}</p>
           </div>
@@ -55,7 +55,7 @@ const SiteContactForm = ({ dispatch, isLoading }: any): any => {
             layout="vertical"
             className="mx-auto mt-10 max-w-full"
           >
-            <div className="grid grid-cols-1 ">
+            <div className="grid grid-cols-1  contact-form">
               <div>
 
                 <div className="">
@@ -85,7 +85,7 @@ const SiteContactForm = ({ dispatch, isLoading }: any): any => {
                   <div className="absolute inset-y-0 left-0 flex items-center">
                     <label className="sr-only">{t('contactForm.country')}</label>
                     <select id="currency" name="currency"
-                            className="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
+                            className="h-full rounded-md border-0 bg-transparent py-0 text-right pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
                       <option>
 
                         UAE
@@ -122,7 +122,7 @@ const SiteContactForm = ({ dispatch, isLoading }: any): any => {
           <div className=" flex justify-between">
             <div className="contact flex items-center mt-10">
               <img src={CallIcon} />
-              <div className="contact-detials ml-3">
+              <div className="contact-detials ltr:ml-3 rtl:mr-3">
                 <h1 className="text-md">{t('common.phone')}</h1>
                 <p className="text-sm font-light">03 5432 1234</p>
               </div>
@@ -130,7 +130,7 @@ const SiteContactForm = ({ dispatch, isLoading }: any): any => {
 
             <div className="contact flex items-center mt-10">
               <img src={EmailIcon} />
-              <div className="contact-detials ml-3">
+              <div className="contact-detials  ltr:ml-3 rtl:mr-3">
                 <h1 className="text-md">{t('common.email')}</h1>
                 <p className="text-sm font-light">info@marcc.com.au</p>
               </div>
@@ -138,7 +138,7 @@ const SiteContactForm = ({ dispatch, isLoading }: any): any => {
 
             <div className="contact flex items-center mt-10">
               <img src={LocationIcon} />
-              <div className="contact-detials ml-3">
+              <div className="contact-detials  ltr:ml-3 rtl:mr-3">
                 <h1 className="text-md">{t('common.address')}</h1>
                 <p className="text-sm font-light">Abu Dhabi-UAE</p>
               </div>

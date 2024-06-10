@@ -8,8 +8,8 @@ const SpecialLicenseMandate = () =>{
   return (
     <div className="bg-white">
       <div className="max-w-screen-xl mx-auto pt-20 pb-20">
-        <h2 className="text-5xl font-bold tracking-tight text-gray-900">  <span dangerouslySetInnerHTML={{ __html: t('home.special_license_mandate') }}></span>    </h2>
-        <p className="mt-6 font-regular">{getByLocale(cms.home ,'banner_text')}</p>
+        <h2 className="text-5xl font-bold tracking-tight text-[#2D1015]">  <span dangerouslySetInnerHTML={{ __html: t('home.special_license_mandate') }}></span>    </h2>
+        <p className="mt-6 font-regular text-[#2D1015]">{getByLocale(cms.home ,'banner_text')}</p>
       </div>
 
     </div>

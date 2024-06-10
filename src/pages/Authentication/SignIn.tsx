@@ -26,7 +26,7 @@ const SignIn = ({ dispatch, isLoading }: any): any => {
         className="flex max-h-screen bg-white max-w-screen-xl mx-auto items-center justify-between lg:flex-row md:flex-col sm:p-3  max-sm:flex-col max-sm:p-4">
         <div className="form-welcome  sm:w-full md:w-10/12 max-w-md">
           <div className="isolate bg-white  w-12/12">
-            <div className="mx-auto text-left">
+            <div className="mx-auto ltr:text-left rtl:text-right">
               <NavLink to="/">
                 <span  className="back-arrow"></span>
               </NavLink>
@@ -36,13 +36,13 @@ const SignIn = ({ dispatch, isLoading }: any): any => {
                   <img className="" src={logo} alt="" width="175" height="60" />
                 </a>
               </div>
-              <h2 className="text-4xl font-bold tracking-tight text-gray-900 ">
+              <h2 className="text-4xl font-bold tracking-tight text-[#2D1015] ">
                 <span dangerouslySetInnerHTML={{ __html: t('login.heading') }}></span>
                 👋</h2>
-              <p className="mt-2 text-lg leading-8 text-gray-600 leading-normal"><span
+              <p className="mt-2 text-lg leading-8 text-[#2D1015] leading-normal"><span
                 dangerouslySetInnerHTML={{ __html: t('login.message') }}></span></p>
             </div>
-            <div className="grid grid-cols-1">
+            <div className="grid grid-cols-1 contact-form mt-4">
             <Form
                 name="register"
                 initialValues={{ remember: true }}

@@ -1,8 +1,9 @@
 let endpoints = [
-  'auth/login',
+  'userPortal/login',
   // 'business',
   // 'business/calculateFine/xxx',
   // 'business/issueFineByTierOne/xxx',
+  'userPortal/cms'
 ];
 export const MockDataUtil = (endpoint: string) => {
   console.log('MOCK:', endpoint);
@@ -72,259 +73,144 @@ export const MockDataUtil = (endpoint: string) => {
         status: 200,
       };
       break;
-    case 'business':
+    case 'userPortal/cms':
       response = {
-        status: true,
-        message: null,
-        data: [
-          {
-            _id: '633de96a4a9e9dc396fbdc7c',
-            name: 'Five Seasons',
-            owner_name: 'FS',
-            trade_license_number: '#FEE2224333E',
-            location: 'Al Maryah Island',
-            phone: '0589433939',
-            mobile: '0583566933',
-            email: 'gm@fivesesons.me',
-            gm_name: 'Jane Doe',
-            gm_mobile: '05656422434',
-            business_licenses: [
+        data: {
+          license_types:[
+            {
+              "id": "D2C0B02F-C247-4A99-A31D-60148201AD05",
+              "name": "Advertising Permit",
+              "name_ar": "تصريح الدعاية",
+              "fee": 0,
+              "cms_image": "https://dctproject.blob.core.windows.net/media/media7608317958675048-1704714511_659be10f7c366_XL_Lays_Flamin_Hot_New.png",
+              "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+              "description_ar": "لوريم إيبسوم هو ببساطة نص وهمي من صناعة الطباعة والتنضيد",
+              "documents": [
+                {"name": "Alcohol License Number","name_ar": "رقم ترخيص الكحول"},
+                {"name": "Special License","name_ar": "ترخيص خاص"},
+                {"name": "Alcohol  Number","name_ar": "رقم ترخيص الكحول"},
+                {"name": "Trade License","name_ar": "رخصة تجارية"},
+                {"name": "Special License","name_ar": "ترخيص خاص"}
+              ]
+            },
+            {
+              "id": "D2C0B02F-C247-4A99-A31D-60148201AD05",
+              "name": "Advertising Permit",
+              "name_ar": "تصريح الدعاية",
+              "fee": 0,
+              "cms_image": "https://dctproject.blob.core.windows.net/media/media7608317958675048-1704714511_659be10f7c366_XL_Lays_Flamin_Hot_New.png",
+              "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+              "description_ar": "لوريم إيبسوم هو ببساطة نص وهمي من صناعة الطباعة والتنضيد",
+              "documents": [
+                {"name": "Alcohol License Number","name_ar": "رقم ترخيص الكحول"},
+                {"name": "Special License","name_ar": "ترخيص خاص"},
+                {"name": "Alcohol  Number","name_ar": "رقم ترخيص الكحول"},
+                {"name": "Trade License","name_ar": "رخصة تجارية"},
+                {"name": "Special License","name_ar": "ترخيص خاص"}
+              ]
+            },
+            {
+              "id": "D2C0B02F-C247-4A99-A31D-60148201AD05",
+              "name": "Advertising Permit",
+              "name_ar": "تصريح الدعاية",
+              "fee": 0,
+              "cms_image": "https://dctproject.blob.core.windows.net/media/media7608317958675048-1704714511_659be10f7c366_XL_Lays_Flamin_Hot_New.png",
+              "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+              "description_ar": "لوريم إيبسوم هو ببساطة نص وهمي من صناعة الطباعة والتنضيد",
+              "documents": [
+                {"name": "Alcohol License Number","name_ar": "رقم ترخيص الكحول"},
+                {"name": "Special License","name_ar": "ترخيص خاص"},
+                {"name": "Alcohol  Number","name_ar": "رقم ترخيص الكحول"},
+                {"name": "Trade License","name_ar": "رخصة تجارية"},
+                {"name": "Special License","name_ar": "ترخيص خاص"}
+              ]
+            },
+            {
+              "id": "D2C0B02F-C247-4A99-A31D-60148201AD05",
+              "name": "Advertising Permit",
+              "name_ar": "تصريح الدعاية",
+              "fee": 0,
+              "cms_image": "https://dctproject.blob.core.windows.net/media/media7608317958675048-1704714511_659be10f7c366_XL_Lays_Flamin_Hot_New.png",
+              "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+              "description_ar": "لوريم إيبسوم هو ببساطة نص وهمي من صناعة الطباعة والتنضيد",
+              "documents": [
+                {"name": "Alcohol License Number","name_ar": "رقم ترخيص الكحول"},
+                {"name": "Special License","name_ar": "ترخيص خاص"},
+                {"name": "Alcohol  Number","name_ar": "رقم ترخيص الكحول"},
+                {"name": "Trade License","name_ar": "رخصة تجارية"},
+                {"name": "Special License","name_ar": "ترخيص خاص"}
+              ]
+            },
+            {
+              "id": "D2C0B02F-C247-4A99-A31D-60148201AD05",
+              "name": "Advertising Permit",
+              "name_ar": "تصريح الدعاية",
+              "fee": 0,
+              "cms_image": "https://dctproject.blob.core.windows.net/media/media7608317958675048-1704714511_659be10f7c366_XL_Lays_Flamin_Hot_New.png",
+              "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+              "description_ar": "لوريم إيبسوم هو ببساطة نص وهمي من صناعة الطباعة والتنضيد",
+              "documents": [
+                {"name": "Alcohol License Number","name_ar": "رقم ترخيص الكحول"},
+                {"name": "Special License","name_ar": "ترخيص خاص"},
+                {"name": "Alcohol  Number","name_ar": "رقم ترخيص الكحول"},
+                {"name": "Trade License","name_ar": "رخصة تجارية"},
+                {"name": "Special License","name_ar": "ترخيص خاص"}
+              ]
+            }
+          ],
+          faq:{
+            hero_banner_image:"",
+            faqs:[
               {
-                _id: '63793ac84b9bea296704ab16',
-                business_id: '633de96a4a9e9dc396fbdc7c',
-                license_number: 'air012345',
-                issue_date: '2022-11-19',
-                expiry_date: '2023-11-19',
-                documents: [
-                  {
-                    path: 'trimString',
-                    file_type: 'file name',
-                    mime_type: 'trimString',
-                    type: 'External',
-                    issue_date: '2022-11-19',
-                    expiry_date: '2023-11-19',
-                  },
-                ],
-                fines: [
-                  {
-                    fine_type: '637d27952566029db7c8d0b4',
-                    violation_number: 1,
-                    _id: '637ba7b6cd5736b2b74ebd62',
-                    assigned_to: '633ec380b90128111559ee38',
-                    fee: 3000,
-                    is_closed: false,
-                    is_managed_by_court: false,
-                    is_warning: false,
-                    last_assigned_user: '633ec380b90128111559ee38',
-                    status: {
-                      _id: '636bf5b360b25e26575d4114',
-                      slas_name: 'Active',
-                      tamm_name: 'Active',
-                      slug: 'active',
-                      __v: 0,
-                    },
-                    comments: [
-                      {
-                        comment: 'The fine is amended',
-                        created_date: '2022-11-22T09:44:23.739Z',
-                        created_by: '633ec380b90128111559ee38',
-                        _id: '637c9a49a8149694f7474c98',
-                      },
-                      {
-                        comment: 'The fine is amended',
-                        created_date: '2022-11-22T09:44:23.739Z',
-                        created_by: '633ec380b90128111559ee38',
-                        _id: '637c9a77a8149694f7474caa',
-                      },
-                    ],
-                  },
-                  {
-                    fine_type: '637d27952566029db7c8d0b4',
-                    fee: null,
-                    is_paid: false,
-                    created_date: '2022-11-21T20:19:06.539Z',
-                    created_by: '633ec380b90128111559ee38',
-                    last_assigned_user: '633ec380b90128111559ee38',
-                    assigned_to: '633ec380b90128111559ee38',
-                    is_managed_by_court: false,
-                    is_warning: false,
-                    is_closed: false,
-                    violation_number: 2,
-                    status: {
-                      _id: '636bf5b360b25e26575d4114',
-                      slas_name: 'Active',
-                      tamm_name: 'Active',
-                      slug: 'active',
-                      __v: 0,
-                    },
-                    _id: '637bdd4b9a1887b6cb7dcff4',
-                    comments: [
-                      {
-                        comment: 'This fine is wrong please correct it',
-                        created_date: '2022-11-22T08:00:51.277Z',
-                        created_by: '633ec380b90128111559ee38',
-                        _id: '637c820f136d87ce7a48d539',
-                      },
-                      {
-                        comment: 'This fine is wrong please correct it',
-                        created_date: '2022-11-22T08:00:51.277Z',
-                        created_by: '633ec380b90128111559ee38',
-                        _id: '637c824f136d87ce7a48d54a',
-                      },
-                      {
-                        comment: 'This fine is wrong please correct it 2nd',
-                        created_date: '2022-11-22T08:04:48.148Z',
-                        created_by: '633ec380b90128111559ee38',
-                        _id: '637c82b4f959ce3e568b116c',
-                      },
-                      {
-                        comment: 'This fine is rejected',
-                        created_date: '2022-11-22T08:04:48.148Z',
-                        created_by: '633ec380b90128111559ee38',
-                        _id: '637c8315f959ce3e568b117c',
-                      },
-                    ],
-                  },
-                  {
-                    fine_type: '637d27952566029db7c8d0b4',
-                    fee: 3000,
-                    is_paid: false,
-                    created_date: '2022-11-21T20:19:06.539Z',
-                    created_by: '633ec380b90128111559ee38',
-                    last_assigned_user: '633ec380b90128111559ee38',
-                    assigned_to: null,
-                    is_managed_by_court: false,
-                    is_warning: false,
-                    is_closed: false,
-                    violation_number: 3,
-                    status: {
-                      _id: '636bf5b360b25e26575d4114',
-                      slas_name: 'Active',
-                      tamm_name: 'Active',
-                      slug: 'active',
-                      __v: 0,
-                    },
-                    _id: '637bddc29a1887b6cb7dd000',
-                    comments: [
-                      {
-                        comment: 'The fine is approved by tier 2 3rd comment',
-                        created_date: '2022-11-22T06:36:49.707Z',
-                        created_by: '633ec380b90128111559ee38',
-                        _id: '637c6e54ed5899eb274d892e',
-                      },
-                      {
-                        comment: 'The fine is approved by tier 2 3rd comment',
-                        created_date: '2022-11-22T06:36:49.707Z',
-                        created_by: '633ec380b90128111559ee38',
-                        _id: '637c6e54ed5899eb274d8939',
-                      },
-                      {
-                        comment: 'The fine is approved by tier 2 4th comment',
-                        created_date: '2022-11-22T06:38:34.835Z',
-                        created_by: '633ec380b90128111559ee38',
-                        _id: '637c6e741b7f08a5ecbf2c9c',
-                      },
-                      {
-                        comment: 'The fine is approved by tier 2 5th comment',
-                        created_date: '2022-11-22T06:42:49.543Z',
-                        created_by: '633ec380b90128111559ee38',
-                        _id: '637c6f90dab2f377bff27791',
-                      },
-                      {
-                        comment: 'This the final comment',
-                        created_date: '2022-11-22T06:44:41.427Z',
-                        created_by: '633ec380b90128111559ee38',
-                        _id: '637c7030e1a86728ecbc67e5',
-                      },
-                    ],
-                  },
-                ],
-                status: {
-                  _id: '636bf5b360b25e26575d4114',
-                  slas_name: 'Active',
-                  tamm_name: 'Active',
-                  slug: 'active',
-                  __v: 0,
-                },
+                question:"What is Webflow and why is it the best website builder",
+                answer:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+
+                question_ar:"التراخيص على أساس سنوي. كما نقدم تصريح الإعلان والترويج لدعم هذه الأعمال",
+                answer_ar:"تفويض من حكومة أبوظبي، تعتبر دائرة الثقافة والسياحة - أبوظبي الجهة المخولة بإصدار التراخيص الخاصة التي تلبي احتياجات السوق. نقدم عدة أنواع من التراخيص الخاصة ضمن فئات مختلفة تشمل تجارة التجزئة والتوزيع، والاستيراد وإعادة التصدير  والتخزين، والتطبيقات الالكترونية، والمنافذ المستقلة، والنوادي الاجتماعية والرياضية، والمطارات، والمنطقة السياحية. ويتم تجديد هذه التراخيص على أساس سنوي. كما نقدم تصريح الإعلان والترويج لدعم هذه الأعمال.",
+
               },
               {
-                _id: '63794ae6cd5736b2b74ebd4f',
-                business_id: '633de96a4a9e9dc396fbdc7c',
-                license_number: 'air987654',
-                issue_date: '2022-11-19',
-                expiry_date: '2023-11-19',
-                documents: [
-                  {
-                    path: 'trimString',
-                    file_type: 'file name',
-                    mime_type: 'trimString',
-                    type: 'External',
-                    issue_date: '2022-11-19',
-                    expiry_date: '2023-11-19',
-                  },
-                ],
-                status: {
-                  _id: '636bf5b360b25e26575d4114',
-                  slas_name: 'Active',
-                  tamm_name: 'Active',
-                  slug: 'active',
-                  __v: 0,
-                },
+                question:"What is your favorite template from BRIX Templates?",
+                answer:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+                question_ar:"والنوادي الاجتماعية والرياضية، والمطارات، والمنطقة السياحية",
+                answer_ar:"تفويض من حكومة أبوظبي، تعتبر دائرة الثقافة والسياحة - أبوظبي الجهة المخولة بإصدار التراخيص الخاصة التي تلبي احتياجات السوق. نقدم عدة أنواع من التراخيص الخاصة ضمن فئات مختلفة تشمل تجارة التجزئة والتوزيع، والاستيراد وإعادة التصدير  والتخزين، والتطبيقات الالكترونية، والمنافذ المستقلة، والنوادي الاجتماعية والرياضية، والمطارات، والمنطقة السياحية. ويتم تجديد هذه التراخيص على أساس سنوي. كما نقدم تصريح الإعلان والترويج لدعم هذه الأعمال.",
+
               },
               {
-                _id: '63806f6e0408428c65af69c9',
-                business_id: '633de96a4a9e9dc396fbdc7c',
-                license_number: 'storage012345',
-                fines: [],
-                documents: [],
-                __v: 0,
-                status: {
-                  _id: '636bf5b360b25e26575d4114',
-                  slas_name: 'Active',
-                  tamm_name: 'Active',
-                  slug: 'active',
-                  __v: 0,
-                },
+                question:"How do you clone a Webflow Template from the Showcase?",
+                answer:"",
+                question_ar:"والتخزين، والتطبيقات الالكترونية، والمنافذ المستقلة",
+                answer_ar:"تفويض من حكومة أبوظبي، تعتبر دائرة الثقافة والسياحة - أبوظبي الجهة المخولة بإصدار التراخيص الخاصة التي تلبي احتياجات السوق. نقدم عدة أنواع من التراخيص الخاصة ضمن فئات مختلفة تشمل تجارة التجزئة والتوزيع، والاستيراد وإعادة التصدير  والتخزين، والتطبيقات الالكترونية، والمنافذ المستقلة، والنوادي الاجتماعية والرياضية، والمطارات، والمنطقة السياحية. ويتم تجديد هذه التراخيص على أساس سنوي. كما نقدم تصريح الإعلان والترويج لدعم هذه الأعمال.",
+              }
+            ],
+          },
+          guideline:{
+            hero_banner_image:"",
+            documents:[
+              {
+                name:"Circulars",
+                url:"",
               },
               {
-                _id: '63806f6e0408428c65af69ca',
-                business_id: '633de96a4a9e9dc396fbdc7c',
-                license_number: 'export012345',
-                fines: [],
-                documents: [],
-                __v: 0,
-                status: {
-                  _id: '636bf5b360b25e26575d4114',
-                  slas_name: 'Active',
-                  tamm_name: 'Active',
-                  slug: 'active',
-                  __v: 0,
-                },
+                name:"Regulation",
+                url:"",
+              },
+              {
+                name:"Guideline",
+                url:"",
               },
             ],
           },
-        ],
-      };
-      break;
-    case 'business/calculateFine/xxx':
-      response = {
-        message: 'License Fine Calculated',
-        data: {
-          fineDetails: {
-            isManagedByCourt: false,
-            fixedAmount: false,
-            maxFixedAmount: false,
-            isWarning: false,
-            isClosed: false,
-            fineAmount: 400,
-            violationNumber: 4,
+          home:{
+            banner_text : "As per the Abu Dhabi Government mandate, DCT Abu Dhabi is the entity authorised to issue Special Licenses that cater to market needs. We offer several types of Special Licenses under various categories including Retail Shop and Distribution, Import Export and Warehouse, Online Application, Independent Outlet, Social & Sports Club, Airports and Tourism Destination. These licenses are to be renewed on an annual basis.  We also offer an Advertisement & Promotion permit to support this business.",
+            banner_text_ar:"وفقًا لتفويض حكومة أبوظبي، فإن دائرة الثقافة والسياحة - أبوظبي هي الجهة المخولة بإصدار التراخيص الخاصة التي تلبي احتياجات السوق. نحن نقدم عدة أنواع من التراخيص الخاصة ضمن فئات مختلفة بما في ذلك متجر البيع بالتجزئة والتوزيع، والاستيراد والتصدير والمستودعات، والتطبيق عبر الإنترنت، والمنفذ المستقل، والنادي الاجتماعي والرياضي، والمطارات والوجهات السياحية. ويجب تجديد هذه التراخيص على أساس سنوي.  نقدم أيضًا تصريح إعلان وترويج لدعم هذا العمل.",
+            hero_banner_image:"",
+            hero_banner_text:"We are working towards full automation of our services, to better serve our stakeholders by providing them the ability to track their applications. ",
+            hero_banner_text_ar:"  نقدم أيضًا تصريح إعلان وترويج لدعم هذا العمل",
+            hero_banner_heading:"Special Licensing",
+            hero_banner_heading_ar:"الترخيص الخاص",
           },
         },
-      };
-      break;
-    case 'business/issueFineByTierOne/xxx':
-      response = {
-        data: {},
         status: true,
       };
       break;
@@ -335,6 +221,6 @@ export const MockDataUtil = (endpoint: string) => {
 };
 
 export const mockEndpoint = (endpoint: string) => {
-  console.log(endpoint);
+  console.log(endpoint, endpoints.some((value: string) => value === endpoint),'lin');
   return endpoints.some((value: string) => value === endpoint);
 };

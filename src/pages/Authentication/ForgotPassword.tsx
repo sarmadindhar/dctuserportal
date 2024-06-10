@@ -15,7 +15,7 @@ const ForgotPassword = ()=>{
                 <img className="" src={logo} alt="" width="175" height="60" />
               </a>
             </div>
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 ">Forget <span
+            <h2 className="text-4xl font-bold tracking-tight text-[#2D1015] ">Forget <span
               className="text-[#F77860]">Password ?</span></h2>
             <p className="mt-2 text-xl leading-8 text-black leading-normal">Today is a new day. It's your day. You shape
               it.

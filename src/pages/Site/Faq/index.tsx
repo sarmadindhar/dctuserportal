@@ -11,7 +11,7 @@ const Faq = ({faqs}:any) => {
     <SiteLayout>
       <div className="bg-white mt-8">
         <div className="max-w-screen-xl mx-auto pb-20">
-          <h2 className="text-5xl font-bold tracking-tight text-gray-900 mb-11">
+          <h2 className="text-5xl font-bold tracking-tight text-[#2D1015] mb-11">
           <span
             dangerouslySetInnerHTML={{ __html: t('faq.heading') }}></span>
           </h2>

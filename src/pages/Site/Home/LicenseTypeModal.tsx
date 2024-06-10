@@ -16,7 +16,7 @@ const LicenseTypeModal = ({visible, onOk , onCancel, licenseDetails}:any)=>{
           currentTarget.src=fallBackImage;
         }}/>
 
-        <div className="modal-licence-details pl-10 items-start flex flex-col justify-center max-w-md">
+        <div className="modal-licence-details ltr:pl-10 rtl:pr-10 items-start flex flex-col justify-center max-w-md">
           <h2
             className="text-3xl font-bold tracking-tight text-gray-900">             {getByLocale(licenseDetails, 'name')}</h2>
           <p className=" font-regular">  {getByLocale(licenseDetails, 'description')} </p>
@@ -29,7 +29,7 @@ const LicenseTypeModal = ({visible, onOk , onCancel, licenseDetails}:any)=>{
               ))
             }
           </div>
-          <div className="modal-footer mt-5 flex items-center">
+          <div className="modal-footer mt-5 flex items-center rtl:flex-row-reverse ltr:flex-row">
             <div>
               <p className="text-[#F77860] text-sm">{t('common.fee')}</p>
               <h1 className="text-lg font-semibold text-black"> {currencyFormat(licenseDetails?.fee)}  </h1>
