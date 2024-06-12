@@ -16,28 +16,28 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
   const { t } = useTranslation();
   const types = [
     {
-      id:1,
+      id:'tourism_restaurant',
       name:"Tourist Restaurant",
       name_ar:"Tourist Restaurant",
     },
     {
-      id:2,
+      id:'floating_restaurant',
       name:"Floating Restaurant",
       name_ar:"Floating Restaurant",
     },
     {
 
-      id:3,
+      id:'tourist_cams',
       name:"Tourist Camps",
       name_ar:"Tourist Camps",
     },
     {
-      id:4,
+      id:'cinema',
       name:"Cinema",
       name_ar:"Cinemas",
     },
     {
-      id:5,
+      id:'theaters_and_others',
       name:"Theaters & Others",
       name_ar:"Theaters & Others",
     }
@@ -210,6 +210,7 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
           ) : ""
         }
 
+
       </div>
 
       {
@@ -231,24 +232,30 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
                 <div className="flex flex-wrap -mx-4">
                   <div className="w-full md:w-1/2 px-4">
                     <p> {t('fields.surveyQ1')} </p> <br />
-                    <InputText rules={[{ required: true }]} name={'owner_name'} />
+                    <Form.Item name="survey_question">
+                      <InputText rules={[{ required: true }]} name={'survey_question'} />
+                    </Form.Item>
                   </div>
                   <div className="w-full px-4">
                     <p> {t('fields.surveyQ2')} </p> <br />
-
-                    <RadioGroup>
-                      <Radio value={'light'}>{t('fields.light')}</Radio>
-                      <Radio value={'all_spirits'}>{t('fields.allSpirits')}</Radio>
-                    </RadioGroup>
+                    <Form.Item name="liquor_type"
+                    >
+                      <Radio.Group>
+                        <Radio value="light">{t('fields.light')}</Radio>
+                        <Radio value="all_spirits">{t('fields.allSpirits')}</Radio>
+                      </Radio.Group>
+                    </Form.Item>
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-4 mt-2">
                   <div className="w-full px-4">
                     <p> {t('fields.surveyQ3')} </p> <br />
-                    <RadioGroup>
-                      <Radio value={'yes'}>{t('fields.yes')}</Radio>
-                      <Radio value={'no'}>{t('fields.no')}</Radio>
-                    </RadioGroup>
+                    <Form.Item name={'additional_activities'}>
+                      <Radio.Group>
+                        <Radio value={'yes'}>{t('fields.yes')}</Radio>
+                        <Radio value={'no'}>{t('fields.no')}</Radio>
+                      </Radio.Group>
+                    </Form.Item>
                   </div>
                 </div>
 
@@ -256,10 +263,12 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
                   <div className="w-full px-4">
                     <p>{t('fields.surveyQ4')}</p>
                     <br />
-                    <RadioGroup>
-                      <Radio value={'yes'}>{t('fields.yes')}</Radio>
-                      <Radio value={'no'}>{t('fields.no')}</Radio>
-                    </RadioGroup>
+                    <Form.Item name={'includes_bar_or_dance_floor'}>
+                      <Radio.Group>
+                        <Radio value={'yes'}>{t('fields.yes')}</Radio>
+                        <Radio value={'no'}>{t('fields.no')}</Radio>
+                      </Radio.Group>
+                    </Form.Item>
                   </div>
                 </div>
               </>
@@ -271,7 +280,7 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
       {
         isVisible('tourism_restaurant', licenseType) ? (
           <div className="flex flex-wrap -mx-4">
-            <Form.List name="users">
+            <Form.List name="linked_businesses">
               {(fields, { add, remove }) => (
                 <>
                   {fields.map(({ key, name, ...restField }) => (
@@ -280,7 +289,7 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
                         <Form.Item
                           label={t('fields.tourismRestaurantTradeName')}
                           {...restField}
-                          name={[name, 'trade_name']}
+                          name={[name, 'name']}
                           rules={[{ required: true, message: 'Missing Trade Name' }]}
                         >
                           <Input placeholder="Tourism Resturant Trade Name" />
@@ -291,7 +300,7 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
                                    label={t('fields.tourismRestaurantTradeNo')}
 
                                    {...restField}
-                                   name={[name, 'trade_number']}
+                                   name={[name, 'trade_license_number']}
                                    rules={[{ required: true, message: 'Missing Trade Number' }]}
                         >
                           <Input placeholder="Tourism Resturant Trade Number" />

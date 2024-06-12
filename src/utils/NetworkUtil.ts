@@ -12,13 +12,13 @@ const NetworkUtil = (
 ) => {
   let API_ENDPOINT = `${import.meta.env.VITE_API_BASE_URL}${url}`;
 
-  if (
-    mockEndpoint(url)
-  ) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(MockDataUtil(url)), 1000);
-    });
-  }
+  // if (
+  //   mockEndpoint(url)
+  // ) {
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => resolve(MockDataUtil(url)), 1000);
+  //   });
+  // }
 
   if (query != null) {
     API_ENDPOINT +=

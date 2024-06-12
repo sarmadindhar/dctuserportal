@@ -25,6 +25,7 @@ import { useSelector } from 'react-redux';
 import Dashboard from './pages/Dashboard';
 import LicenseDetails from './pages/LicenseRequest/NewLicenseRequest/LicenseDetails.tsx';
 import SelectLicenseType from './pages/LicenseRequest/NewLicenseRequest/SelectLicenseType.tsx';
+import SubmittedForApproval from './pages/LicenseRequest/NewLicenseRequest/SubmittedForApproval.tsx';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -124,6 +125,23 @@ function App() {
                   <>
                     <PageTitle title="SLS | Dashboard" />
                     <LicenseDetails /></>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+        <Route
+          path="/user/licenseApply/:workflowId/status/:id"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <SubmittedForApproval /></>
                 ) : (
                   <Navigate replace to='/login' />
                 )

@@ -311,3 +311,8 @@ nav ul li a.profile:hover svg path{ fill: white;}
   
 }
 
+
+.active_card{
+  background-color: rgb(247, 120, 96) !important;
+  color: white;
+}
