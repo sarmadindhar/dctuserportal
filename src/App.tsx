@@ -10,7 +10,7 @@ import Chart from './pages/Chart';
 
 import FormElements from './pages/Form/FormElements';
 import FormLayout from './pages/Form/FormLayout';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile/index.tsx';
 import Settings from './pages/Settings';
 import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
@@ -25,7 +25,14 @@ import { useSelector } from 'react-redux';
 import Dashboard from './pages/Dashboard';
 import LicenseDetails from './pages/LicenseRequest/NewLicenseRequest/LicenseDetails.tsx';
 import SelectLicenseType from './pages/LicenseRequest/NewLicenseRequest/SelectLicenseType.tsx';
-import SubmittedForApproval from './pages/LicenseRequest/NewLicenseRequest/SubmittedForApproval.tsx';
+import SelectTradeLicense from './pages/LicenseRequest/SelectTradeLicense.tsx';
+import LicenseAmendDetails from './pages/LicenseRequest/AmmendLicenseRequest/LicenseAmendDetails.tsx';
+import CancelRenewLicenseDetails from './pages/LicenseRequest/CancelRenewLicenseDetails.tsx';
+import RequestStatus from './pages/LicenseRequest/RequestStatus.tsx';
+import Fines from './pages/Fines';
+import DownloadLicense from './pages/LicenseRequest/DownloadLicense.tsx';
+import Invoice from './pages/Invoice';
+import PaymentStatus from './pages/Invoice/PaymentStatus.tsx';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -116,6 +123,147 @@ function App() {
             </>
           }
         />
+
+        <Route
+          path="/user/licenseAmend/:businessLicenseId"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <SelectTradeLicense action={'amend'} /></>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+        <Route
+          path="/user/licenseCancel/:businessLicenseId"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <SelectTradeLicense action={'cancel'}/></>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+
+        <Route
+          path="/user/licenseDownload/:businessLicenseId"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <DownloadLicense/></>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+        <Route
+          path="/user/licenseCancel/:businessLicenseId/details"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <CancelRenewLicenseDetails action={'cancel'}/></>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+
+
+        <Route
+          path="/user/licenseRenew/:businessLicenseId"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <SelectTradeLicense action={'renew'}/></>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+        <Route
+          path="/user/licenseRenew/:businessLicenseId/details"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <CancelRenewLicenseDetails action={'renew'}/></>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+
+        <Route
+          path="/user/requestStatus/:id/:action"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <RequestStatus />
+                  </>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+        <Route
+          path="/user/licenseAmend/:workflowId/details/:businessLicenseId?"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <LicenseAmendDetails /></>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
         <Route
           path="/user/licenseApply/:workflowId/details/:id?"
           element={
@@ -141,7 +289,7 @@ function App() {
                 isAuthenticated() ? (
                   <>
                     <PageTitle title="SLS | Dashboard" />
-                    <SubmittedForApproval /></>
+                    <RequestStatus action={'new'} /></>
                 ) : (
                   <Navigate replace to='/login' />
                 )
@@ -149,6 +297,66 @@ function App() {
             </>
           }
         />
+
+
+
+        <Route
+          path="/user/fines"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <Fines></Fines>
+                  </>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+
+        <Route
+          path="/user/profile"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <Profile/>
+                  </>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+        <Route
+          path="/user/payment-status/:paymentId/:paymentType?"
+          element={
+            <>
+              {
+                isAuthenticated() ? (
+                  <>
+                    <PageTitle title="SLS | Dashboard" />
+                    <PaymentStatus/>
+                  </>
+                ) : (
+                  <Navigate replace to='/login' />
+                )
+              }
+            </>
+          }
+        />
+
+
+
         <Route
           path="/calendar"
           element={

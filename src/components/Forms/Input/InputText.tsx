@@ -6,9 +6,10 @@ const InputText = (props)=>{
       label={props.label}
       rules={props.rules}
 
+
     >
       <Input
-        className="" />
+        className="" disabled={props.disabled}/>
     </Form.Item>
   );
 }

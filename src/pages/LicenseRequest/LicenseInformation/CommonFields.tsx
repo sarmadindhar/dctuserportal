@@ -44,6 +44,19 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
   ]
 
 
+  const event_types = [
+    {id:"sport_tournament",name:"Sport Tournament",name_ar:"بطولة رياضية"},
+    {id:"concerts",name:"Concerts",name_ar:"حفلات موسيقية"},
+    {id:"occasion_parties",name:"Occasion Parties",name_ar:"حفلات مناسبات"},
+    {id:"conferences",name:"Conferences",name_ar:"مؤتمرات"},
+    {id:"trade_shows",name:"Trade Shows",name_ar:"معارض تجارية"},
+    {id:"workshops",name:"Workshops",name_ar:"ورش عمل"},
+    {id:"reunions",name:"Reunions",name_ar:"لم الشمل"},
+    {id:"galas",name:"Galas",name_ar:"حفلات غالا"},
+    {id:"seminars",name:"Seminars",name_ar:"ندوات"},
+    {id:"others",name:"Others",name_ar:"أخرى"},
+  ];
+
   useEffect(() => {
     console.log(have_ware_house_location)
   }, [form]);
@@ -61,9 +74,9 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
       <div className="flex flex-wrap -mx-4">
         {
           isVisible('special_license_number', licenseType) ? (
-            <div className="w-full md:w-1/2 px-4">
+            <div className="w-full md:w-1/2 px-4" >
               <InputText label={t('fields.specialLicenseNo')} rules={[{ required: true }]}
-                         name={'special_license_no'} />
+                         name={'special_license_no'} disabled={true}/>
             </div>
           ) : ""
         }
@@ -71,7 +84,7 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
           isVisible('alcohol_license_number', licenseType) ? (
             <div className="w-full md:w-1/2 px-4">
               <InputText label={t('fields.alcoholLicenseNumber')} rules={[{ required: true }]}
-                         name={'alcohol_license_number'} />
+                         name={'alcohol_license_no'} />
             </div>
           ) : ""
         }
@@ -99,7 +112,7 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
         {
           isVisible('region', licenseType) ? (
             <div className="w-full md:w-1/2 px-4">
-              <RegionDropDown />
+              <RegionDropDown name={'region_id'}/>
             </div>
           ) : ''
         }
@@ -107,7 +120,7 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
         {
           isVisible('map', licenseType) ? (
             <div className="w-full md:w-1/2 px-4">
-              <MapInput form={form} name={'map'}/>
+              <MapInput form={form} name={['map']} />
             </div>
           ) : ""
         }
@@ -115,7 +128,13 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
         {
           isVisible('event', licenseType) ? (
             <div className="w-full md:w-1/2 px-4">
-              <InputText label={t('fields.eventType')} rules={[{ required: true }]} name={"event_type"} />
+              <Form.Item label={t('fields.eventType')} name="event_type">
+                <Select>
+                  {event_types.map((type) => (
+                    <Select.Option key={type.id} value={type.id}>{type.name}</Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
             </div>
           ) : ""
         }
@@ -155,10 +174,6 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
             </div>
           ) : ""
         }
-
-
-
-
         {
           isVisible('address', licenseType) ? (
             <div className="w-full md:w-1/2 px-4">
@@ -197,6 +212,7 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
         {
           isVisible('special_license_number_of_import_export', licenseType) ? (
             <div className="w-full md:w-1/2 px-4">
+
               <InputText label={t('fields.specialLicenseNoOfImportExport')} rules={[{ required: true }]} name={"special_license_no_of_import_export"} />
             </div>
           ) : ""
@@ -205,7 +221,13 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
         {
           isVisible('category', licenseType) ? (
             <div className="w-full md:w-1/2 px-4">
-              <InputText label={t('fields.category')} rules={[{ required: true }]} name={"category"} />
+              <Form.Item label={t('fields.category')} name="type">
+                <Select>
+                  {types.map((type) => (
+                    <Select.Option key={type.id} value={type.id} >{type.name}</Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
             </div>
           ) : ""
         }
@@ -285,7 +307,7 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
                 <>
                   {fields.map(({ key, name, ...restField }) => (
                     <>
-                      <div className="w-full md:w-1/2 px-4">
+                      <div className="w-full md:w-1/2 px-4" key={key}>
                         <Form.Item
                           label={t('fields.tourismRestaurantTradeName')}
                           {...restField}
@@ -332,7 +354,7 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
           <>
             <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
               <div className="w-full">
-                <Form.Item name="have_ware_house_location" valuePropName="checked">
+                <Form.Item name="have_ware_house_location" valuePropName="checked" >
                   <Checkbox >Do you have a ware house</Checkbox>
                 </Form.Item>
               </div>
@@ -368,8 +390,95 @@ const CommonFields = ({ form , licenseTypeFields , licenseType})=>{
         ) : ''
       }
 
+      {
+        isVisible('associated_licenses',licenseType) ? (
+          <>
+            <div className="grid">
+
+              <Form.List name="associated_licenses">
+                {(fields, { add, remove }) => (
+                  <>
+                  {fields.map(({ key, name, ...restField }) => (
+
+                      <>
+                        <div className=" p-4 rounded-[14px] border border-[#FFA897] mb-4" key={key}>
+                          <div className="flex justify-end">
+                            <Button type={'primary'}  size={'small'} onClick={() => remove(name)}>X</Button>
+                          </div>
+                          <div className="grid grid-cols-2 gap-4">
+                            <Form.Item
+                              label={t('fields.alcoholLicenseNumber')}
+                              {...restField}
+                              name={[name, 'alcohol_license_number']}
+                              rules={[{ required: true, message: 'Missing Alcohol Licene No' }]}
+                            >
+                              <Input placeholder="Alcohol License Number" />
+                            </Form.Item>
+
+
+                            <Form.Item className={'w-full'}
+                                       label={t('fields.tradeName')}
+
+                                       {...restField}
+                                       name={[name, 'trade_name']}
+                                       rules={[{ required: true, message: 'Missing Trade Name' }]}
+                            >
+                              <Input placeholder="Trade name" />
+
+
+                            </Form.Item>
+
+
+                            <Form.Item className={'w-full'}
+                                       label={t('fields.retailShop')}
+
+                                       {...restField}
+                                       name={[name, 'retail_shop']}
+                                       rules={[{ required: true, message: 'Missing Retail shop' }]}
+                            >
+                              <Input placeholder="Retail shop" />
+                            </Form.Item>
+
+
+                            <RegionDropDown                                        name={[name, 'region']}
+                            />
+
+
+                            <Form.Item className={'w-full'}
+                                       label={t('fields.address')}
+
+                                       {...restField}
+                                       name={[name, 'address']}
+                                       rules={[{ required: true, message: 'Missing Address' }]}
+                            >
+                              <Input placeholder="Address" />
+                            </Form.Item>
+
+
+
+                            <MapInput form={form} restFields={restField}
+                                      name={[name]}
+                            />
+
+                          </div>
+                        </div>
+                      </>
+                    ))}
+                    <div className="grid grid-cols-4">
+                      <Button type={'primary'} className={'w-40'} onClick={() => add()}>Add License</Button>
+                    </div>
+                  </>
+                )}
+
+
+              </Form.List>
+            </div>
+          </>
+        ) : ''
+      }
+
       <div className="flex flex-wrap -mx-4">
-      <div className="w-full px-4 flex gap-2">
+        <div className="w-full px-4 flex gap-2">
 
         </div>
       </div>

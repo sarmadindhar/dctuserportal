@@ -128,6 +128,10 @@ const resources = {
         no:"No",
         light:"Light",
         allSpirits:"All Spirits",
+        retailShop:"Retail Shop",
+        applicantOfficeNo:"Applicant Office No",
+        applicantMobileNo:"Applicant Mobile No",
+        applicantName:"Applicant Name",
 
       },
 

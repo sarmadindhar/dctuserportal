@@ -27,7 +27,9 @@ const SelectLicenseType = ()=>{
   };
   return(
     <DefaultLayout>
-      <ApplicationSteps current={0}/>
+      <ApplicationSteps current={0}
+      steps={[1,2,3,4,5]}
+      />
       <div className="bg-white p-10 rounded">
         <p  className="font-medium text-black dark:text-white">Apply License</p>
         <p className="font-medium text-orange mt-3"> Select Special License Type</p>
@@ -42,7 +44,7 @@ const SelectLicenseType = ()=>{
           <Form.Item label={t('fields.licenseType')} name="license_type">
             <Select>
               {licenseTypes.map((lt)=>(
-                <Select.Option value={lt.id}>{lt.name}</Select.Option>
+                <Select.Option value={lt.id} key={lt.id}>{lt.name}</Select.Option>
               ))}
             </Select>
           </Form.Item>

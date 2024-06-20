@@ -316,3 +316,13 @@ nav ul li a.profile:hover svg path{ fill: white;}
   background-color: rgb(247, 120, 96) !important;
   color: white;
 }
+
+
+.fines_card{
+
+  .ant-pro-card-title{
+    display: flex;
+    align-items: center !important;
+    width: 100% !important;
+  }
+}

@@ -90,7 +90,7 @@ const Header = (props: {
         </div>
 
         <div className="hidden sm:block">
-          <h1 className='text-3xl font-bold text-black'>License</h1>
+          <h1 className='text-3xl font-bold text-black'>{props.title ? props.title:"License"}</h1>
           {/* <form action="https://formbold.com/s/unique_form_id" method="POST">
             <div className="relative">
               <button className="absolute left-0 top-1/2 -translate-y-1/2">

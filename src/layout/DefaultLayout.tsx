@@ -2,9 +2,14 @@ import React, { useState, ReactNode } from 'react';
 import Header from '../components/Header/index';
 import Sidebar from '../components/Sidebar/index';
 
-const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
+interface DefaultLayoutProps {
+  children: ReactNode;
+  title?: string;
+}
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, title}) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  console.log(children);
   return (
     <div className="bg-[#F9F8F6] dark:text-bodydark">
       {/* <!-- ===== Page Wrapper Start ===== --> */}
@@ -16,7 +21,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
         {/* <!-- ===== Content Area Start ===== --> */}
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
           {/* <!-- ===== Header Start ===== --> */}
-          <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+          <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen } title={title} />
           {/* <!-- ===== Header End ===== --> */}
 
           {/* <!-- ===== Main Content Start ===== --> */}

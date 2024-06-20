@@ -27,7 +27,7 @@ const InputFile = (props)=>{
   return (
     <div className="p-1">
       <div
-        className="custom-upload-container flex items-center justify-between border border-meta-1 rounded-[14px] p-1">
+        className="custom-upload-container flex items-center justify-between  rounded-[14px] border border-[#FFA897] p-1">
         <p className="ml-4 text-black text-base font-semibold">{props.label}</p>
         <Form.Item valuePropName={'fileList'} getValueFromEvent={(event)=>{
           return event?.fileList
@@ -50,36 +50,9 @@ const InputFile = (props)=>{
           }
         }]}>
         <Upload maxCount={1}
-                onChange={handleChange}
+                onChange={handleChange} defaultFileList={props.defaultFileList}
                 beforeUpload={() => false}  // Prevents automatic upload
 
-          //         beforeUpload={(file)=>{
-        //   console.log('before upload');
-        //   return new Promise((resolve, reject)=>{
-        //     console.log('gi',file);
-        //     const isLt2M = file.size / 1024 / 1024 < 2;
-        //     if(!isLt2M){
-        //       console.log('file size exceeded',);
-        //       reject('file size exceeded')
-        //     }else{
-        //       resolve('success')
-        //     }
-        //   })
-        // }} customRequest={(info,onError, file)=>{
-        //   props.onChange()
-        //   console.log('info',info );
-        //   const fmData = new FormData()
-        //   fmData.append("file", info.file);
-        //   fmData.append("doc_id", props.name);
-        //   NetworkUtil('POST', `userPortal/upload`,fmData).then((res)=>{
-        //     console.log(res);
-        //     info.onSuccess(res, info.file);
-        //
-        //   }).catch((e)=>{
-        //     console.log('error' , e);
-        //   });
-        //
-        // }}
 
         >
           <Button icon={<UploadOutlined />} className={'mr-2'}>Select File</Button>
@@ -87,7 +60,7 @@ const InputFile = (props)=>{
         </Form.Item>
 
       </div>
-      <span className="text-graydark text-sm">PDF, JPEG or PNG / Maximum Upload File Size 5 MB</span>
+      <span className="text-graydark text-sm">PDF, JPEG or PNG / Maximum Upload File Size 2 MB</span>
     </div>
   );
 }

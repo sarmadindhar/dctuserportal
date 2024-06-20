@@ -1,58 +1,56 @@
-import React, { useState, useRef , useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
-import { LoadScript, StandaloneSearchBox, GoogleMap, Marker } from '@react-google-maps/api';
+import { StandaloneSearchBox, GoogleMap, Marker } from '@react-google-maps/api';
 import { EnvironmentOutlined } from '@ant-design/icons';
 
-const MapInput = ({form}) =>{
+const MapInput = ({ form, name , restFields}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const libraries = ["places"];
   const [location, setLocation] = useState(null);
-
   const searchBoxRef = useRef(null);
   const [searchInput, setSearchInput] = useState('');
-  const locationInputRef = useRef(null);
-  const mapField = Form.useWatch('map', { form, preserve: true });
-  const latField = Form.useWatch('latitude', { form, preserve: true });
-  const longField = Form.useWatch('longitude', { form, preserve: true });
 
+  const mapField = Form.useWatch(name, form)?.map;
+  const latField = Form.useWatch(name, form)?.latitude;
+  const longField = Form.useWatch(name, form)?.longitude;
 
-  const suffix = (
-    <EnvironmentOutlined />);
+  const suffix = <EnvironmentOutlined />;
 
   const center = {
-    lat: latField? latField: 24.491596,
-    lng: longField ? longField :54.3547217,
-    address:mapField,
+    lat: latField || 24.491596,
+    lng: longField || 54.3547217,
   };
+
   const [markerPosition, setMarkerPosition] = useState(center);
   const mapContainerStyle = {
     height: "400px",
-    width: "100%"
+    width: "100%",
   };
+
   const handleMapClick = (event) => {
     const position = {
       lat: event.latLng.lat(),
-      lng: event.latLng.lng()
+      lng: event.latLng.lng(),
     };
     setMarkerPosition(position);
-    // Reverse geocoding to get address from coordinates
+
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({ location: position }, (results, status) => {
       if (status === 'OK' && results[0]) {
         const location = results[0].formatted_address;
         setLocation(location);
-
-        const position = {
-          lat: results[0].geometry.location.lat(),
-          lng: results[0].geometry.location.lng()
-        };
         setSearchInput(location);
+        form.setFieldsValue({
+          [name]: {
+            map: location,
+            latitude: position.lat,
+            longitude: position.lng,
+          },
+        });
       }
     });
   };
 
-
-  const handleOpenModal = (location=null) => {
+  const handleOpenModal = () => {
     setIsModalVisible(true);
   };
 
@@ -69,21 +67,47 @@ const MapInput = ({form}) =>{
         const position = {
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng(),
-          address:location
         };
         setLocation(location);
         setMarkerPosition(position);
-        form.setFieldsValue({ map: location});
-        form.setFieldsValue({ latitude: position.lat});
-        form.setFieldsValue({ longitude: position.lng});
-        // form.setFieldsValue({ location, latitude: position.lat, longitude: position.lng });
+        console.log('name is ',name, restFields);
+        if(name.length && restFields && restFields.isListField){
+          const fields = form.getFieldsValue();
+          const { associated_licenses } = fields;
+          associated_licenses[restFields.fieldKey] = {
+            ...associated_licenses[restFields.fieldKey],
+            map: location,
+            latitude: position.lat,
+            longitude: position.lng,
+          };
+          form.setFieldsValue({ associated_licenses });
+        }else{
+          form.setFieldsValue({
+            [name]: {
+              map: location,
+              latitude: position.lat,
+              longitude: position.lng,
+            },
+          });
+        }
+
+
         setSearchInput(location);
         setIsModalVisible(false);
-
       }
     }
   };
 
+  const onSetFieldValue = (index) => {
+    const fields = form.getFieldsValue('associated_licenses');
+    const items = fields.items || [];
+    items[index] = { ...items[index], name: 'New Value' };
+    form.setFieldsValue({ items });
+  };
+
+  useEffect(() => {
+    console.log('name',...name);
+  }, []);
   const handlePlacesChanged = () => {
     if (searchBoxRef.current) {
       const places = searchBoxRef.current.getPlaces();
@@ -92,34 +116,43 @@ const MapInput = ({form}) =>{
         const location = place.formatted_address;
         const position = {
           lat: place.geometry.location.lat(),
-          lng: place.geometry.location.lng()
+          lng: place.geometry.location.lng(),
         };
-
         setLocation(location);
         setMarkerPosition(position);
         setSearchInput(location);
+        form.setFieldsValue({
+          [name]: {
+            map: location,
+            latitude: position.lat,
+            longitude: position.lng,
+          },
+        });
       }
     }
   };
 
-
-  return(
-    <LoadScript googleMapsApiKey="AIzaSyBiK4-gaLpyLL2Zk42ubfL1VjMbXDPpi6w" libraries={libraries}>
-      <Form.Item
-        name="map"
+  return (
+    <>
+      <Form.Item rules={[{ required: true }]}
+        name={[...name,'map']}
         label="Map"
-
-        rules={[{ required: true, message: 'Please enter  map location!' }]}
+        {...restFields}
       >
-        <Input readOnly onClick={handleOpenModal}  value={location?.address} ref={locationInputRef} suffix={suffix} />
+        <Input
+          readOnly
+          onClick={handleOpenModal}
+          suffix={suffix}
+        />
       </Form.Item>
-      <Form.Item noStyle name={'latitude'}>
-        <Input  type="hidden" />
+      <Form.Item noStyle name={[...name, 'latitude']}>
+        <Input type="hidden" />
       </Form.Item>
-      <Form.Item noStyle name={'longitude'}>
-        <Input  type="hidden" />
+      <Form.Item noStyle name={[...name, 'longitude']}>
+        <Input type="hidden" />
       </Form.Item>
-      <Modal width={800}
+      <Modal
+        width={800}
         title="Select Location"
         open={isModalVisible}
         onCancel={handleCancel}
@@ -129,7 +162,7 @@ const MapInput = ({form}) =>{
           </Button>,
           <Button key="save" type="primary" onClick={handleSave}>
             Save
-          </Button>
+          </Button>,
         ]}
       >
         <StandaloneSearchBox
@@ -152,11 +185,8 @@ const MapInput = ({form}) =>{
           <Marker position={markerPosition} />
         </GoogleMap>
       </Modal>
-    </LoadScript>
+    </>
   );
-
-
-}
-
+};
 
 export default MapInput;

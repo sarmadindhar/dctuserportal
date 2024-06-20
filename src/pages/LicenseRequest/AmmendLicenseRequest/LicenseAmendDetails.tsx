@@ -1,48 +1,49 @@
 import DefaultLayout from '../../../layout/DefaultLayout.tsx';
 import { ProCard } from '@ant-design/pro-components';
-import { Button, Checkbox, Form, Input, Upload } from 'antd';
+import { Button, Checkbox, Form , Upload} from 'antd';
 import CommonFields from '../LicenseInformation/CommonFields.tsx';
 import ApplicationSteps from '../ApplicationSteps.tsx';
 import InputText from '../../../components/Forms/Input/InputText.tsx';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { MinusCircleOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import { UploadOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import InputFile from '../../../components/Forms/InputFile.tsx';
 import NetworkUtil from '../../../utils/NetworkUtil.ts';
 import moment from 'moment';
 import GoogleMapsLoader from '../../../components/Forms/GoogleMapsLoader.tsx';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const LicenseDetails = ()=>{
   const { t } = useTranslation();
-  let { workflowId, id } = useParams();
+  let { workflowId, businessLicenseId } = useParams();
   const [workflow , setWorkFlow] = useState(null);
   const [documents , setDocumentFiles] = useState({});
   let navigate = useNavigate();
-
   const auth = useSelector((state) => state.auth.user);
+
 
   const [requestDetails , setRequestDetails] = useState(null);
 
   const licenseTypeFields = {
     online_sales_license:['trade_license_number','trade_name','owner_name','region','map','address','gm_name','gm_email','gm_number'],
     independent_outlets_license:['trade_license_number','trade_name','owner_name','region','map','address','gm_name','email','gm_number','type'],
-    airport_license:['trade_license_number','trade_name','owner_name','region','map','address','gm_name','gm_email','gm_number'],
+    airport_license:['special_license_number','trade_license_number','trade_name','owner_name','region','map','address','gm_name','gm_email','gm_number'],
     initial_approval:['trade_license_number','trade_name','owner_name','region','map','address','gm_name','gm_email','gm_number'],
     hotel_establishments_license:['trade_license_number','trade_name','owner_name','region','map','address','gm_name','gm_email','gm_number','category','tourism_restaurant'],
     social_and_sport_club_license:['trade_license_number','trade_name','owner_name','region','map','address','gm_name','email','gm_number','tourism_restaurant'],
-    "import,_re-export_and_storage_license":['trade_license_number','trade_name','owner_name','region','map','address','gm_name','email','gm_number','ware_house_location'],
+    "import,_re-export_and_storage_license":['trade_license_number','trade_name','owner_name','region','map','address','gm_name','gm_email','gm_number','ware_house_location'],
     retail_shop_license:['trade_license_number','trade_name','owner_name','region','map','address','gm_name','email','gm_number','special_license_number_of_import_export'],
     tourism_district_license:['trade_license_number','trade_name','owner_name','region','map','address','gm_name','gm_email','gm_number','tourism_restaurant'],
-    advertising_permit:['alcohol_license_number','trade_license_number','trade_name','region','map','address','gm_name','gm_email','gm_number','dates','associated_licenses'],
+    advertising_permit:['alcohol_license_number','trade_name','region','map','address','gm_name','email','gm_number','dates','associated_licenses'],
     fermentation_permit:['alcohol_license_number','trade_name','region','map','address','gm_name','email','gm_number','dates'],
     temporary_special_license:['trade_license_number','trade_name','owner_name', 'event', 'region','map','address','email'],
 
   }
   const onFinish= (values) => {
     values.license_id = workflow.license_type_id
+    values.business_license = businessLicenseId;
     console.log('values',values);
     let formData = new FormData();
     for (const key in values) {
@@ -85,10 +86,10 @@ const LicenseDetails = ()=>{
         }
       }
     }
-    let url = `userPortal/applyLicense/1`;
+    let url = `userPortal/applyLicense/2`;
     NetworkUtil('POST', url,formData).then((res)=>{
       console.log('-----------------',res);
-      navigate(`/user/licenseApply/${workflowId}/status/${res.data[0].id}`)
+      navigate(`/user/requestStatus/${res.data[0].id}/amend`)
     }).catch((e)=>{
       console.log('error' , e);
     });
@@ -102,26 +103,14 @@ const LicenseDetails = ()=>{
 
     associated_licenses : [
 
-    ],
-    other_documents:[
-      {name:"Other Document"}
     ]
-  }
-
-
-  const getDocumentName = (document)=>{
-    let name = `file_${document.license_document_id}`
-    let l =  requestDetails &&  requestDetails.documents? requestDetails.documents?.find((doc)=>(doc.file_type === name)):{};
-    return  l ? {id:l.id, path:l.path, name:document.name} : {};
-    // console.log(l , name);
-    // return l;
   }
 
   const fillContactDetails = (e)=>{
     console.log(e.target.checked);
     if(e.target.checked){
       form.setFieldsValue({
-          applicant_name : auth.name
+        applicant_name : auth.name
       });
     }
   }
@@ -129,72 +118,64 @@ const LicenseDetails = ()=>{
     setDocumentFiles((prevFiles) => ({ ...prevFiles, [id]: fileList }));
   };
   useEffect(() => {
+    console.log(workflowId, businessLicenseId);
     NetworkUtil('GET', `userPortal/workflow/${workflowId}`).then((res)=>{
       if(res && res.data){
         setWorkFlow(res.data[0]);
-        if(id){
-          NetworkUtil('GET', `userPortal/requestDetails/${id}`).then((res)=>{
-              let request = res.data;
-            console.log(`--------------------`,request);
-              let map_address = request.map_address;
-              if(map_address){
-                map_address = JSON.parse(map_address)
-                map_address.map = map_address.address;
+        if(businessLicenseId){
+          NetworkUtil('GET', `userPortal/businessLicense/${businessLicenseId}`).then((res)=>{
+            let request = res.data;
+            console.log(request,'000');
+            let map_address = request.map_address;
+            if(map_address && map_address!=undefined){
+              map_address = JSON.parse(map_address)
+              map_address.map = map_address.address;
+            }
+            let data = {
+              special_license_no:request.special_license_no,
+              ded_license_number:request.ded_license_number,
+              trade_name:request.trade_name,
+              owner_name:request.owner_name,
+              map:map_address,
+              address:request.address,
+              gm_name:request.gm_name,
+              gm_email:request.gm_email,
+              region_id:request.region_id,
+              gm_number:request.gm_mobile,
+              special_license_no_of_import_export:request.special_license_no_of_import_export,
+              category:request.outlet_type,
+              issue_date:moment(request.issue_date),
+              expiry_date:moment(request.expiry_date),
+            }
+            let additional_data = request.additional_data
+            console.log('aaaaaaaaaaaaaaaaaaa',additional_data);
+            if(additional_data){
+              if(additional_data['warehouse_address']){
+                data.warehouse_location = additional_data['warehouse_address'];
+                data.have_ware_house_location = additional_data['warehouse_address'] ? true:false;
+              }if(additional_data['associated_licenses']){
+                data.associated_licenses = additional_data['associated_licenses'];
               }
-            setRequestDetails(request);
-            console.log(map_address);
-              let data = {
-                special_license_no:request.special_license_number,
-                ded_license_number:request.ded_license_number,
-                trade_name:request.trade_name,
-                owner_name:request.owner_name,
-                map:map_address,
-                address:request.location,
-                gm_name:request.gm_name,
-                gm_email:request.gm_email,
-                region_id:request.region_id,
-                gm_number:request.gm_mobile,
-                applicant_name:request.applicant_name,
-                applicant_mobile_no:request.applicant_mobile_no,
-                applicant_office_no:request.applicant_office_no,
-                request_id:id,
-                type:request.outlet_type,
-                warehouse_location:request.warehouse_address,
-                special_license_no_of_import_export:request.special_license_no_of_import_export,
-                category:request.outlet_type,
-                issue_date:moment(request.issue_date),
-                expiry_date:moment(request.expiry_date),
-
+              if(additional_data['outlet_type']){
+                data.type = additional_data['outlet_type'];
               }
-              data.have_ware_house_location = request.warehouse_address ? true: false;
-              let additional_data = JSON.parse(request.additional_data);
-              if(additional_data && additional_data.survey){
-                console.log(additional_data['survey']);
+              if(additional_data['survey']){
                 data.survey_question = additional_data['survey']['question']
                 data.liquor_type = additional_data['survey']['liquor_type']
                 data.additional_activities = additional_data['survey']['additional_activities']
                 data.includes_bar_or_dance_floor = additional_data['survey']['includes_bar_or_dance_floor']
               }
-            if(additional_data['eventInfo'] && additional_data['eventInfo']['event_type']){
-              console.log('event info',additional_data['eventInfo']['event_time']);
-              data.event_date = moment(additional_data['eventInfo']['event_date'])
-              data.event_time = moment(additional_data['eventInfo']['event_time'],'HH:mm:ss')
-              data.event_title = additional_data['eventInfo']['event_title']
-              data.event_type = additional_data['eventInfo']['event_type']
-              data.expected_no_of_attendees = additional_data['eventInfo']['expected_no_of_attendees']
-              data.alcohol_purchase_value = additional_data['eventInfo']['alcohol_purchase_value']
+              if(additional_data['eventInfo'] && additional_data['eventInfo']['event_type']){
+                console.log('event info',additional_data['eventInfo']['event_time']);
+                data.event_date = moment(additional_data['eventInfo']['event_date'])
+                data.event_time = moment(additional_data['eventInfo']['event_time'],'HH:mm:ss')
+                data.event_title = additional_data['eventInfo']['event_title']
+                data.event_type = additional_data['eventInfo']['event_type']
+                data.expected_no_of_attendees = additional_data['eventInfo']['expected_no_of_attendees']
+                data.alcohol_purchase_value = additional_data['eventInfo']['alcohol_purchase_value']
+              }
             }
-              let linked = JSON.parse(request.linked_business_licenses);
-              if(linked && linked.length){
-                data.linked_businesses = linked;
-              }
-
-              let associated_licenses = JSON.parse(request.associated_licenses);
-              if(associated_licenses && associated_licenses.length){
-                console.log(associated_licenses);
-                data.associated_licenses = associated_licenses;
-              }
-              form.setFieldsValue(data)
+            form.setFieldsValue(data)
           }).catch((e)=>{
             console.log('error' , e);
           });
@@ -213,7 +194,7 @@ const LicenseDetails = ()=>{
 
           current={1}/>
         <div className="grid">
-          <p className="text-xl text-black ml-2 font-bold">{workflow?.name}</p>
+          <p className="text-lg text-black ml-2">{workflow?.name}</p>
           <GoogleMapsLoader>
             <Form
               name="register"
@@ -222,7 +203,6 @@ const LicenseDetails = ()=>{
               layout="vertical"
               form={form}
               initialValues={initialValues}
-              disabled={requestDetails?true:false}
             >
               <ProCard
                 title="License Information"
@@ -253,7 +233,7 @@ const LicenseDetails = ()=>{
                 style={{
                   marginBlockEnd: 16,
                   minWidth: 800,
-                  maxWidth: '100%'
+                  maxWidth: '100%',
                 }}
               >
 
@@ -261,17 +241,15 @@ const LicenseDetails = ()=>{
                 <div className="flex flex-wrap -mx-4">
                   {
                     workflow && workflow.documents && workflow.documents.length ? (
-                      workflow.documents.map((doc, i) => (
-                        <div className="w-full md:w-1/2 px-4" key={i} >
-                          <InputFile label={doc.name} name={`${doc.name}`}
-                                     id={doc.license_document_id} form={form} onChange={handleUploadChange} />
-
-                          <p></p>
+                      workflow.documents.map((doc,i) => (
+                        <div className="w-full md:w-1/2 px-4" key={i}>
+                          <InputFile label={doc.name} name={`${doc.name}`} id={doc.license_document_id} form={form} onChange={handleUploadChange}/>
                         </div>
                       ))
                     ) : ''
                   }
                 </div>
+
               </ProCard>
 
 
@@ -315,9 +293,7 @@ const LicenseDetails = ()=>{
               </div>
             </Form>
           </GoogleMapsLoader>
-
         </div>
-
       </DefaultLayout>
     </>
   );

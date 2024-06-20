@@ -7,7 +7,7 @@ const DatePickerInput = (props) =>{
       rules={props.rules}
 
     >
-      <DatePicker  className={'w-full'}/>
+      <DatePicker  className={'w-full'} />
     </Form.Item>
   )
 }
